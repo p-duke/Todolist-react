@@ -1,7 +1,7 @@
-class TaskController < ApplicationController
+class TasksController < ApplicationController
 
   def index
-    @tasks = Task.all
+    render json: @tasks = Task.all
   end
 
   def new
@@ -37,4 +37,5 @@ class TaskController < ApplicationController
   def task_params
     params.require(:post).permit(:description)
   end
+
 end
