@@ -9,9 +9,11 @@ class TasksController < ApplicationController
   end
 
   def create
+
     @task = Task.new(task_params)
+    @task.status = false
     if @task.save
-      render json: @task.to_json
+      render json: @task
     else
       render json: { :errors => @task.errors.full_messages }
     end
@@ -35,7 +37,9 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:post).permit(:description)
+    # puts "\n\n\n\n\n\n\n\n\n I am a teacup"
+    params.require(:task).permit(:description)
+
   end
 
 end
