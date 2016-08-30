@@ -20,6 +20,7 @@ class App extends Component {
       axios.get('http://localhost:3000/tasks')
     .then((response) => {
       this.setState({tasks: response.data});
+      console.log('state', this.state.tasks);
     })
     .catch(function (error) {
       console.log(error);
@@ -27,11 +28,11 @@ class App extends Component {
   }
 
   updateTasks(task) {
-    this.setState({tasks: [task].concat(this.state.tasks)})
+    this.setState({tasks: [task.data].concat(this.state.tasks)});
   }
 
   render() {
-    console.log(this.state.tasks);
+    console.log('app state', this.state.tasks)
     return (
       <div className="App">
         <div className="App-header">
@@ -39,6 +40,7 @@ class App extends Component {
           <h2>Welcome to the TodoList!</h2>
         </div>
         <ul className="App-intro">
+
           <TaskForm onUpdate={this.updateTasks}/>
           <TaskList tasks={this.state.tasks}/>
         </ul>
